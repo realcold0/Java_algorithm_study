@@ -11,53 +11,51 @@ public class Boj_1406 {
         for (int i = 0; i < c.length(); i++){
             contents.add(c.charAt(i));
         }
-        int max_length = c.length();
-        int cursor = max_length;
-        String[] command = new  String[M];
-        char[] addContents = new char[M];
+        String command;
+        char addContents ='t';
+
+        //listiterator 초기화
+        ListIterator<Character> iterList = contents.listIterator();
+
+        //커서가 맨 앞이라 뒤로 옮기기
+        while(iterList.hasNext()){
+            iterList.next();
+        }
 
         //커맨드 입력받기
         for (int i = 0; i < M; i++){
             StringTokenizer st = new StringTokenizer(br.readLine());
-            command[i] = st.nextToken();
-            if(Objects.equals(command[i], "P")){
-                addContents[i] = st.nextToken().charAt(0);
+            command = st.nextToken();
+            if(Objects.equals(command, "P")){
+                addContents = st.nextToken().charAt(0);
             }
-
-        }
-
-        //커맨드 실행
-        for (int j = 0 ; j < command.length;j++){
-            switch (command[j]){
+            //커맨드 처리
+            switch (command) {
                 case "L":
-                    if (cursor !=0){
-                        cursor -=1;
-                    }
+                    if (iterList.hasPrevious())
+                        iterList.previous();
                     break;
                 case "D":
-                    if(cursor != max_length){ //
-                        cursor +=1;
-                    }
+                    if (iterList.hasNext())
+                        iterList.next();
                     break;
                 case "B":
-                    if(cursor != 0 && max_length > 0) {
-                        contents.remove(cursor - 1);
-                        cursor -=1;
-                        max_length -=1;
+                    if (iterList.hasPrevious()){
+                        iterList.previous();
+                        iterList.remove();
                     }
                     break;
                 case "P":
-                    contents.add(cursor,addContents[j]);
-                    cursor +=1;
-                    max_length +=1;
+                    iterList.add(addContents);
                     break;
             }
         }
 
-
-
-        for (Character ch : contents){
-            System.out.print(ch);
+        StringBuilder sb = new StringBuilder();
+        for(char s : contents) {
+            sb.append(s);
         }
+        System.out.println(sb);
+
     }
 }
