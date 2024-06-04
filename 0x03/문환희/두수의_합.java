@@ -18,7 +18,6 @@ public class 두수의_합 {
         int left = 0;
         int right = n - 1;
         int result = 0;
-        boolean flag = false;
 
         while (left < right) {
             int tmp = nums[left] + nums[right];
