@@ -3,28 +3,12 @@ import java.util.Stack;
 import java.util.StringTokenizer;
 
 public class 탑 {
-    private static Stack<Integer> tower = new Stack<>(); //탑 정보를 저장하는 Stack
-    private static Stack<Integer> tmp = new Stack<>(); //비교과정을 담는 Stack
-    private static Stack<Integer> answer = new Stack<>(); //답 Stack
-
-    public static int compare_rasor(int sign){
-        if(!tower.isEmpty()){
-            int cmp = tower.pop();
-            tmp.add(cmp);
-            if (sign < cmp){
-                return tower.size() + 1;
-            }else{
-                return compare_rasor(sign);
-            }
-        }else{
-            return 0;
-        }
-    }
-
-
+    private static Stack<int[]> tower = new Stack<>(); //탑 정보를 저장하는 Stack(idx, 높이)
+    
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        StringBuilder sb = new StringBuilder();
         /*
         StringTokenizer 객체
         : 문자열을 구분자를 이용하여 분리
@@ -36,22 +20,21 @@ public class 탑 {
         StringTokenizer st = new StringTokenizer(br.readLine());
 
 
-        for(int i = 0; i < N; i++){
-            tower.add(Integer.parseInt(st.nextToken()));
-        }
-        int sign;//비교하는 주체
-        while(!tower.isEmpty()){
-            sign = tower.pop();
-            answer.add(compare_rasor(sign));
-            while(!tmp.isEmpty()){
-                tower.add(tmp.pop());
+        for(int i = 1; i <= N; i++){
+            int curr = Integer.parseInt(st.nextToken());
+            while(!tower.isEmpty()){
+                if (tower.peek()[1] < curr){ //왼쪽이 더 짧으면 닿지 않음
+                    tower.pop();
+                }else{
+                    sb.append(tower.peek()[0] + " "); //탑의 높이 출력
+                    break;
+                }
+                }
+                if (tower.isEmpty()){
+                    sb.append("0 ");
+                }
+                tower.add(new int[]{i, curr});
             }
-        }
-
-        StringBuilder sb = new StringBuilder();
-        while(!answer.isEmpty()){
-            sb.append(answer.pop()).append(" ");
-        }
         bw.write(String.valueOf(sb));
         bw.close();
     }
