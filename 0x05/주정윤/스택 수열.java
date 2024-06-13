@@ -17,7 +17,7 @@ public class Solution {
 			
 		int temp =0; 
 		
-		for(int i=1; i<=N; i++) {
+		while(N--> 0){
 			int num = Integer.parseInt(br.readLine());
 			
 			// 입력받은 num값이 temp보다 크면 for문을 돌면서 stack에 값을 넣어주고 '+'를 추가해준
