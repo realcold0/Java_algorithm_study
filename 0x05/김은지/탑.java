@@ -26,7 +26,7 @@ public class 탑 {
                 if (tower.peek()[1] < curr){ //왼쪽이 더 짧으면 닿지 않음
                     tower.pop();
                 }else{
-                    sb.append(tower.peek()[0] + " "); //탑의 높이 출력
+                    sb.append(tower.peek()[0]).append(" "); //탑의 높이 출력
                     break;
                 }
                 }
