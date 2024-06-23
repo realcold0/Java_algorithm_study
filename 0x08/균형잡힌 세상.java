@@ -7,8 +7,6 @@ public class Solution {
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringBuilder sb = new StringBuilder();
 
-        String answer = "";
-        boolean over = false;
         
         while(true) {
         	
