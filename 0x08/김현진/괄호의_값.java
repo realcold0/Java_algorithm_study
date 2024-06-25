@@ -17,18 +17,16 @@ public class Main {
                 char second = stack.pop();
                 if (second == '[') {
                     int tmp = Character.getNumericValue(first) * 3;
-                    System.out.println((char) (tmp + '0'));
                     stack.push((char) (tmp + '0'));
                 } else if (second == '(') {
                     int tmp = Character.getNumericValue(first) * 2;
-                    System.out.println((char) (tmp + '0'));
                     stack.push((char) (tmp + '0'));
                 } else { // 숫자일 경우 더하기
                     int tmp = Character.getNumericValue(first) + Character.getNumericValue(second);
-                    System.out.println(first); // 9
-                    System.out.println(second); // 2
-                    System.out.println(tmp); // 11
-                    System.out.println((char) (tmp + '0'));
+//                    System.out.println(first); // 9
+//                    System.out.println(second); // 2
+//                    System.out.println(tmp); // 11
+//                    System.out.println((char) (tmp + '0'));
                     stack.push((char) (tmp + '0'));
                 }
             } else {
@@ -36,7 +34,7 @@ public class Main {
             }
         }
 
-        ans = stack.pop();
+        ans = Character.getNumericValue(stack.pop());
 
         if (!stack.empty()) {
             ans = 0;
