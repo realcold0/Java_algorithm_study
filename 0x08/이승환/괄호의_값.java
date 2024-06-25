@@ -8,7 +8,6 @@ public class Main {
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         String input = br.readLine();
         Stack<Character> stack = new Stack<>();
-        Stack<Integer> count = new Stack<>();
         int answer = 0;
         int tmp = 1;
         for(int i = 0; i < input.length(); i++) {
@@ -24,8 +23,11 @@ public class Main {
                     answer = 0;
                     break;
                 }else{
-                    if(stack.peek() == '('){
+                    if(input.charAt(i-1) == '('){
+                        stack.pop();
                         answer += tmp;
+                        tmp /= 2;
+                    }else if(stack.peek() == '('){
                         stack.pop();
                         tmp /= 2;
                     }
@@ -36,8 +38,11 @@ public class Main {
                     answer = 0;
                     break;
                 }else{
-                    if(stack.peek() == '['){
+                    if(input.charAt(i-1) == '['){
+                        stack.pop();
                         answer += tmp;
+                        tmp /= 3;
+                    }else if(stack.peek() == '['){
                         stack.pop();
                         tmp /= 3;
                     }
