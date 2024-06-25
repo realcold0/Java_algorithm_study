@@ -2,85 +2,43 @@ import java.io.*;
 import java.util.Stack;
 
 public class 괄호의_값 {
-    public static String str;
-    public static int[] check;
+    static Stack<Character> stack;
 
-//    static int calc(Stack<Character> stack, int idx, int sum) {
-//
-//        if(str.charAt(idx) == ')') {
-//            if(str.charAt(idx - 1) == '(') {
-//                return 2;
-//            }
-//            else {
-//                return sum * 2;
-//            }
-//        }
-//        else if(str.charAt(idx) == ']') {
-//            if(str.charAt(idx - 1) == '[') {
-//                return 3;
-//            }
-//            else {
-//                return sum * 3;
-//            }
-//        }
-//        else {
-//            stack.push(str.charAt(idx));
-//            sum += calc(stack, idx + 1, sum);
-//        }
-//        return sum;
-//    }
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+    static int cal(char start) {
+        int result = 0;
 
-        str = br.readLine();
-        check = new int[str.length()];
-        Stack<Character> stack = new Stack<>();
-        int val = 1;
-        int ans = 0;
-        for(int i = 0; i < str.length(); i++) {
+        while (!stack.isEmpty()) {
+            char ch = stack.pop();
 
-            if(str.charAt(i) == '(' || str.charAt(i) == '[') {
-                stack.push(str.charAt(i));
-                if(str.charAt(i) == '(') {
-                    val *= 2;
-                }
-                else {
-                    val *= 3;
-                }
-            }
-            else {
-                if(str.charAt(i) == ')') {
-                    if(stack.isEmpty() || stack.peek() != '(') {
-                        ans = 0;
-                        break;
-                    }
-                    else if(str.charAt(i - 1) == '('){
-                        ans += val;
-                    }
-                    stack.pop();
-                    val /= 2;
-                }
-                else if(str.charAt(i) == ']') {
-                    if(stack.isEmpty() || stack.peek() != '[') {
-                        ans = 0;
-                        break;
-                    }
-                    else if(str.charAt(i - 1) == '['){
-                        ans += val;
-                    }
-                    stack.pop();
-                    val /= 3;
-                }
+            if (ch == '(' || ch == '[') {
+                result += cal(ch);
+            } else if (start == '(' && ch == ')') {
+                return 2 * Math.max(1, result);
+            } else if (start == '[' && ch == ']') {
+                return 3 * Math.max(1, result);
             }
         }
-        if(!stack.isEmpty()) {bw.write("0\n");}
-        else {bw.write(String.valueOf(ans));}
 
-        bw.flush();
-        bw.close();
-        br.close();
+        // 스택이 비었는데 올바른 반환이 이루어지지 않은 경우, 잘못된 괄호열로 간주
+        System.out.println(0);
+        System.exit(0);
+        return 0; // This will never be reached but is required to compile
+    }
 
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String input = br.readLine().trim();
 
+        stack = new Stack<>();
+        for (int i = input.length() - 1; i >= 0; i--) {
+            stack.push(input.charAt(i));
+        }
+
+        int ans = 0;
+        while (!stack.isEmpty()) {
+            ans += cal(stack.pop());
+        }
+
+        System.out.println(ans);
     }
 }
