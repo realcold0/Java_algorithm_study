@@ -8,23 +8,22 @@ public class Main {
     static int[][] melting; // 빙하 녹을 때 계산 용도
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        N = Integer.parseInt(st.nextToken());
-        M = Integer.parseInt(st.nextToken());
+        N = Integer.parseInt(br.readLine());
+        M = Integer.parseInt(br.readLine());
 
         arr = new int[N][M];
         melting = new int[N][M];
+        visited = new boolean[N][M];
         int time = 0; // 걸린 시간
 
         for (int i = 0; i < N; i++) {
-            st = new StringTokenizer(br.readLine());
+            StringTokenizer st = new StringTokenizer(br.readLine());
             for (int j = 0; j < M; j++) {
                 arr[i][j] = Integer.parseInt(st.nextToken());
             }
         }
 
         while (true) {
-            visited = new boolean[N][M];
             int cnt = 0; // 빙산의 개수
             for (int i = 0; i < N; i++) { // 빙산 개수 세기
                 for (int j = 0; j < M; j++) {
@@ -42,8 +41,10 @@ public class Main {
                 System.out.println(0);
                 break;
             }
+
             calMelt();
             time++;
+
         }
     }
 
@@ -66,23 +67,12 @@ public class Main {
                         visited[nx][ny] = true;
                         q.offer(new int[]{nx, ny});
                     }
-                    if (arr[nx][ny] == 0) { // 주위가 바다일 경우
-                        melting[poll[0]][poll[1]]++; // 깎아지는 만큼 melting에 추가
-                    }
                 }
             }
         }
     }
 
-    static void calMelt() {
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < M; j++) {
-                arr[i][j] -= melting[i][j]; // 녹은 만큼 빼줌
-                if (arr[i][j] < 0) { // 음수면 0
-                    arr[i][j] = 0;
-                }
-                melting[i][j] = 0; // 다음 턴에 다시 사용해야 하므로 초기화
-            }
-        }
+    static void calMelt() { // 녹는 정도를 계산에서 arr에서 빼기
+
     }
 }
