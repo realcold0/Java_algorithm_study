@@ -26,10 +26,12 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringBuilder sb = new StringBuilder();
+        
         // 전체 종이의 한 변의 길이 N
         int N = Integer.parseInt(br.readLine());
         board = new String[N][N];
-
+        
+        // 빈칸을 모두 우선 공백으로 채워준다
         for (int i = 0; i < N; i++) {
             Arrays.fill(board[i], " ");
         }
