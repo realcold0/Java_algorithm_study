@@ -42,8 +42,6 @@ public class 암호 만들기
     }
 
     public static void dfs(int depth, int start) {
-        // N개의 자연수와 자연수 M이 주어졌을 때, 아래 조건을 만족하는 길이가 M인
-        // 수열을 모두 구하는 프로그램을 작성하라
         if(depth == L){
             if(isValid()){
                 sb.append(output).append("\n");
