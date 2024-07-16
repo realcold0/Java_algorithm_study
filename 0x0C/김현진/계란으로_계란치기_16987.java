@@ -57,7 +57,6 @@ public class Main {
 
                 arr[pos][0] += arr[i][1];
                 arr[i][0] += arr[pos][1];
-
             }
         }
     }
