@@ -70,10 +70,4 @@ public class 계란으로 계란치기
 
     }
 
-
-    public static boolean isVowel(char c){
-        // 모음인지 여부 체크
-        return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u';
-    }
-
 }
