@@ -1,7 +1,9 @@
 import java.util.*;
 import java.io.*;
 
+//실패
 public class Solution {
+
     static int N, M;
     static int x, y, K;
     static int[][] map;
