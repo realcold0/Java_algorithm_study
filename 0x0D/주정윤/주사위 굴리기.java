@@ -53,7 +53,7 @@ public class Solution {
             return;
         }
 
-        int[] temp = new int[6];
+        int[] temp = Arrays.copyOf(dice,dice.length);
         switch (dir){
             case 0: //동
                 temp[0] = dice[2]; // 북 -> 동
