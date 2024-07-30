@@ -135,7 +135,6 @@ public class 감시 {
 
     static int findBlindSpot(List<Integer> curr){
         int count =0;
-//        int[][] tmpMap = map.clone();
         int[][] tmpMap = new int[n][0];
         for(int i = 0; i < n; i++){
             tmpMap[i] = Arrays.copyOf(map[i],m);
