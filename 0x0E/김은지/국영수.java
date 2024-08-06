@@ -33,7 +33,7 @@ class Score implements Comparable<Score> {
 
     @Override
     public String toString() {
-        return "Score [name=" + name + ", korean=" + korean + ", english=" + english + ", math=" + math + "]";
+        return name;
     }
 
     @Override
@@ -67,8 +67,7 @@ public class Main {
         Arrays.sort(scores);
         
         for (Score s : scores) {
-            
-            bw.write(s.getName());
+            bw.write(s);
             bw.newLine();
         }
         bw.flush();
