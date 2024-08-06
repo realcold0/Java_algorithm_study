@@ -30,6 +30,7 @@ public class Main {
 
         bw.flush();
         bw.close();
+
     }
 
     static class Student implements Comparable<Student> {
