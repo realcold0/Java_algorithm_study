@@ -4,7 +4,6 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringTokenizer st;
 
         int n = Integer.parseInt(br.readLine());
@@ -22,10 +21,10 @@ public class Main {
                 }
             }
 
-            length = dp[i];
+            length = Math.max(length, dp[i]);
         }
-        bw.write(String.valueOf(length));
-        bw.flush();
+        System.out.println(length);
+        
         br.close();
     }
 }
