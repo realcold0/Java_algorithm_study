@@ -26,6 +26,7 @@ public class Main{
 
         bw.write(String.valueOf(arr[n]));
         bw.flush();
+        bw.close();
     }
 
 }
